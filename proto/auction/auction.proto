@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package auction;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/goggle-source/auctionLotProto/gen/go/auction;auction";
+
+service AuctionServic {
+    rpc CreateAuction(CreateAuctionRequest) returns (CreateAuctionResponse);
+    rpc GetAllAuction(GetAllAuctionRequest) returns (GetAllAuctionResponse);
+    rpc AddUserToAuction(AddUserToAuctionRequest) returns (AddUserToAuctionResponse);
+    rpc DeleteUserToAuction(DeleteUserToAuctionRequest) returns (DeleteUserToAuctionResponse);
+}
+
+message User {
+    string id = 1;
+    string name = 2;
+    uint64 price = 3;
+}
+
+message Auction {
+    string id = 1;
+    string name = 2;
+    uint64 originalPrice = 3;
+    uint32 stepPrice = 4;
+    string idUserCreater = 5;
+    map<int32, User> users = 6;
+}
+
+message CreateAuctionRequest {
+    string nameAuction = 1;
+    uint64 originalPrice = 2;
+    uint32 stepPrice = 3;
+    google.protobuf.Timestamp time = 4;
+}
+
+message CreateAuctionResponse {
+    string uidAuction = 1;
+}
+
+message GetAllAuctionRequest {}
+
+message GetAllAuctionResponse {
+    repeated Auction allAuction = 1;
+}
+
+message AddUserToAuctionRequest {
+    string idAuction = 1;
+    uint64 Price = 2;
+}
+
+message AddUserToAuctionResponse {
+    bool Result = 1;
+}
+
+message DeleteUserToAuctionRequest {
+    string idAuction = 1;
+}
+
+message DeleteUserToAuctionResponse {
+    bool Result = 1;
+}
