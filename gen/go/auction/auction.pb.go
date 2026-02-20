@@ -9,7 +9,7 @@ package auction
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -171,7 +171,7 @@ type CreateAuctionRequest struct {
 	NameAuction   string                 `protobuf:"bytes,1,opt,name=nameAuction,proto3" json:"nameAuction,omitempty"`
 	OriginalPrice uint64                 `protobuf:"varint,2,opt,name=originalPrice,proto3" json:"originalPrice,omitempty"`
 	StepPrice     uint32                 `protobuf:"varint,3,opt,name=stepPrice,proto3" json:"stepPrice,omitempty"`
-	Time          *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=time,proto3" json:"time,omitempty"`
+	Time          *durationpb.Duration   `protobuf:"bytes,4,opt,name=time,proto3" json:"time,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -227,7 +227,7 @@ func (x *CreateAuctionRequest) GetStepPrice() uint32 {
 	return 0
 }
 
-func (x *CreateAuctionRequest) GetTime() *timestamppb.Timestamp {
+func (x *CreateAuctionRequest) GetTime() *durationpb.Duration {
 	if x != nil {
 		return x.Time
 	}
@@ -546,7 +546,7 @@ var File_auction_proto protoreflect.FileDescriptor
 
 const file_auction_proto_rawDesc = "" +
 	"\n" +
-	"\rauction.proto\x12\aauction\x1a\x1fgoogle/protobuf/timestamp.proto\"@\n" +
+	"\rauction.proto\x12\aauction\x1a\x1egoogle/protobuf/duration.proto\"@\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
@@ -561,12 +561,12 @@ const file_auction_proto_rawDesc = "" +
 	"\n" +
 	"UsersEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x05R\x03key\x12#\n" +
-	"\x05value\x18\x02 \x01(\v2\r.auction.UserR\x05value:\x028\x01\"\xac\x01\n" +
+	"\x05value\x18\x02 \x01(\v2\r.auction.UserR\x05value:\x028\x01\"\xab\x01\n" +
 	"\x14CreateAuctionRequest\x12 \n" +
 	"\vnameAuction\x18\x01 \x01(\tR\vnameAuction\x12$\n" +
 	"\roriginalPrice\x18\x02 \x01(\x04R\roriginalPrice\x12\x1c\n" +
-	"\tstepPrice\x18\x03 \x01(\rR\tstepPrice\x12.\n" +
-	"\x04time\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x04time\"7\n" +
+	"\tstepPrice\x18\x03 \x01(\rR\tstepPrice\x12-\n" +
+	"\x04time\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\x04time\"7\n" +
 	"\x15CreateAuctionResponse\x12\x1e\n" +
 	"\n" +
 	"uidAuction\x18\x01 \x01(\tR\n" +
@@ -616,11 +616,11 @@ var file_auction_proto_goTypes = []any{
 	(*DeleteUserToAuctionRequest)(nil),  // 8: auction.DeleteUserToAuctionRequest
 	(*DeleteUserToAuctionResponse)(nil), // 9: auction.DeleteUserToAuctionResponse
 	nil,                                 // 10: auction.Auction.UsersEntry
-	(*timestamppb.Timestamp)(nil),       // 11: google.protobuf.Timestamp
+	(*durationpb.Duration)(nil),         // 11: google.protobuf.Duration
 }
 var file_auction_proto_depIdxs = []int32{
 	10, // 0: auction.Auction.users:type_name -> auction.Auction.UsersEntry
-	11, // 1: auction.CreateAuctionRequest.time:type_name -> google.protobuf.Timestamp
+	11, // 1: auction.CreateAuctionRequest.time:type_name -> google.protobuf.Duration
 	1,  // 2: auction.GetAllAuctionResponse.allAuction:type_name -> auction.Auction
 	0,  // 3: auction.Auction.UsersEntry.value:type_name -> auction.User
 	2,  // 4: auction.AuctionServic.CreateAuction:input_type -> auction.CreateAuctionRequest
