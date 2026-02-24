@@ -16,7 +16,6 @@ service AuctionServic {
 }
 
 message User {
-    string id = 1;
     string name = 2;
     uint64 price = 3;
 }
@@ -27,7 +26,7 @@ message Auction {
     uint64 originalPrice = 3;
     uint32 stepPrice = 4;
     string idUserCreater = 5;
-    map<int32, User> users = 6;
+    map<string, User> users = 6;
 }
 
 message CreateAuctionRequest {

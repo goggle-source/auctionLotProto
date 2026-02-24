@@ -24,7 +24,6 @@ const (
 
 type User struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Price         uint64                 `protobuf:"varint,3,opt,name=price,proto3" json:"price,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -61,13 +60,6 @@ func (*User) Descriptor() ([]byte, []int) {
 	return file_auction_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *User) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
 func (x *User) GetName() string {
 	if x != nil {
 		return x.Name
@@ -89,7 +81,7 @@ type Auction struct {
 	OriginalPrice uint64                 `protobuf:"varint,3,opt,name=originalPrice,proto3" json:"originalPrice,omitempty"`
 	StepPrice     uint32                 `protobuf:"varint,4,opt,name=stepPrice,proto3" json:"stepPrice,omitempty"`
 	IdUserCreater string                 `protobuf:"bytes,5,opt,name=idUserCreater,proto3" json:"idUserCreater,omitempty"`
-	Users         map[int32]*User        `protobuf:"bytes,6,rep,name=users,proto3" json:"users,omitempty" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Users         map[string]*User       `protobuf:"bytes,6,rep,name=users,proto3" json:"users,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -159,7 +151,7 @@ func (x *Auction) GetIdUserCreater() string {
 	return ""
 }
 
-func (x *Auction) GetUsers() map[int32]*User {
+func (x *Auction) GetUsers() map[string]*User {
 	if x != nil {
 		return x.Users
 	}
@@ -738,9 +730,8 @@ var File_auction_proto protoreflect.FileDescriptor
 
 const file_auction_proto_rawDesc = "" +
 	"\n" +
-	"\rauction.proto\x12\aauction\x1a\x1egoogle/protobuf/duration.proto\"@\n" +
-	"\x04User\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\rauction.proto\x12\aauction\x1a\x1egoogle/protobuf/duration.proto\"0\n" +
+	"\x04User\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
 	"\x05price\x18\x03 \x01(\x04R\x05price\"\x93\x02\n" +
 	"\aAuction\x12\x0e\n" +
@@ -752,7 +743,7 @@ const file_auction_proto_rawDesc = "" +
 	"\x05users\x18\x06 \x03(\v2\x1b.auction.Auction.UsersEntryR\x05users\x1aG\n" +
 	"\n" +
 	"UsersEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\x05R\x03key\x12#\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12#\n" +
 	"\x05value\x18\x02 \x01(\v2\r.auction.UserR\x05value:\x028\x01\"\xab\x01\n" +
 	"\x14CreateAuctionRequest\x12 \n" +
 	"\vnameAuction\x18\x01 \x01(\tR\vnameAuction\x12$\n" +
