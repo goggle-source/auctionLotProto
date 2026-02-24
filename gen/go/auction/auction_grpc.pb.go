@@ -23,6 +23,8 @@ const (
 	AuctionServic_GetAllAuction_FullMethodName       = "/auction.AuctionServic/GetAllAuction"
 	AuctionServic_AddUserToAuction_FullMethodName    = "/auction.AuctionServic/AddUserToAuction"
 	AuctionServic_DeleteUserToAuction_FullMethodName = "/auction.AuctionServic/DeleteUserToAuction"
+	AuctionServic_RaiseBid_FullMethodName            = "/auction.AuctionServic/RaiseBid"
+	AuctionServic_LowerBid_FullMethodName            = "/auction.AuctionServic/LowerBid"
 )
 
 // AuctionServicClient is the client API for AuctionServic service.
@@ -33,6 +35,8 @@ type AuctionServicClient interface {
 	GetAllAuction(ctx context.Context, in *GetAllAuctionRequest, opts ...grpc.CallOption) (*GetAllAuctionResponse, error)
 	AddUserToAuction(ctx context.Context, in *AddUserToAuctionRequest, opts ...grpc.CallOption) (*AddUserToAuctionResponse, error)
 	DeleteUserToAuction(ctx context.Context, in *DeleteUserToAuctionRequest, opts ...grpc.CallOption) (*DeleteUserToAuctionResponse, error)
+	RaiseBid(ctx context.Context, in *RaiseBidRequest, opts ...grpc.CallOption) (*RaiseBidResponse, error)
+	LowerBid(ctx context.Context, in *LowerBidRequest, opts ...grpc.CallOption) (*LowerBidResponse, error)
 }
 
 type auctionServicClient struct {
@@ -83,6 +87,26 @@ func (c *auctionServicClient) DeleteUserToAuction(ctx context.Context, in *Delet
 	return out, nil
 }
 
+func (c *auctionServicClient) RaiseBid(ctx context.Context, in *RaiseBidRequest, opts ...grpc.CallOption) (*RaiseBidResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RaiseBidResponse)
+	err := c.cc.Invoke(ctx, AuctionServic_RaiseBid_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *auctionServicClient) LowerBid(ctx context.Context, in *LowerBidRequest, opts ...grpc.CallOption) (*LowerBidResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LowerBidResponse)
+	err := c.cc.Invoke(ctx, AuctionServic_LowerBid_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuctionServicServer is the server API for AuctionServic service.
 // All implementations must embed UnimplementedAuctionServicServer
 // for forward compatibility.
@@ -91,6 +115,8 @@ type AuctionServicServer interface {
 	GetAllAuction(context.Context, *GetAllAuctionRequest) (*GetAllAuctionResponse, error)
 	AddUserToAuction(context.Context, *AddUserToAuctionRequest) (*AddUserToAuctionResponse, error)
 	DeleteUserToAuction(context.Context, *DeleteUserToAuctionRequest) (*DeleteUserToAuctionResponse, error)
+	RaiseBid(context.Context, *RaiseBidRequest) (*RaiseBidResponse, error)
+	LowerBid(context.Context, *LowerBidRequest) (*LowerBidResponse, error)
 	mustEmbedUnimplementedAuctionServicServer()
 }
 
@@ -112,6 +138,12 @@ func (UnimplementedAuctionServicServer) AddUserToAuction(context.Context, *AddUs
 }
 func (UnimplementedAuctionServicServer) DeleteUserToAuction(context.Context, *DeleteUserToAuctionRequest) (*DeleteUserToAuctionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserToAuction not implemented")
+}
+func (UnimplementedAuctionServicServer) RaiseBid(context.Context, *RaiseBidRequest) (*RaiseBidResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RaiseBid not implemented")
+}
+func (UnimplementedAuctionServicServer) LowerBid(context.Context, *LowerBidRequest) (*LowerBidResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LowerBid not implemented")
 }
 func (UnimplementedAuctionServicServer) mustEmbedUnimplementedAuctionServicServer() {}
 func (UnimplementedAuctionServicServer) testEmbeddedByValue()                       {}
@@ -206,6 +238,42 @@ func _AuctionServic_DeleteUserToAuction_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuctionServic_RaiseBid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RaiseBidRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuctionServicServer).RaiseBid(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuctionServic_RaiseBid_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuctionServicServer).RaiseBid(ctx, req.(*RaiseBidRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuctionServic_LowerBid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LowerBidRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuctionServicServer).LowerBid(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuctionServic_LowerBid_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuctionServicServer).LowerBid(ctx, req.(*LowerBidRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AuctionServic_ServiceDesc is the grpc.ServiceDesc for AuctionServic service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -228,6 +296,14 @@ var AuctionServic_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteUserToAuction",
 			Handler:    _AuctionServic_DeleteUserToAuction_Handler,
+		},
+		{
+			MethodName: "RaiseBid",
+			Handler:    _AuctionServic_RaiseBid_Handler,
+		},
+		{
+			MethodName: "LowerBid",
+			Handler:    _AuctionServic_LowerBid_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

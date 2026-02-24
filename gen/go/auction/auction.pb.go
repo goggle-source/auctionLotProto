@@ -542,6 +542,198 @@ func (x *DeleteUserToAuctionResponse) GetResult() bool {
 	return false
 }
 
+type RaiseBidRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Money         float64                `protobuf:"fixed64,1,opt,name=money,proto3" json:"money,omitempty"`
+	AuctionID     string                 `protobuf:"bytes,2,opt,name=auctionID,proto3" json:"auctionID,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RaiseBidRequest) Reset() {
+	*x = RaiseBidRequest{}
+	mi := &file_auction_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RaiseBidRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RaiseBidRequest) ProtoMessage() {}
+
+func (x *RaiseBidRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auction_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RaiseBidRequest.ProtoReflect.Descriptor instead.
+func (*RaiseBidRequest) Descriptor() ([]byte, []int) {
+	return file_auction_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *RaiseBidRequest) GetMoney() float64 {
+	if x != nil {
+		return x.Money
+	}
+	return 0
+}
+
+func (x *RaiseBidRequest) GetAuctionID() string {
+	if x != nil {
+		return x.AuctionID
+	}
+	return ""
+}
+
+type RaiseBidResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CurrentBid    float64                `protobuf:"fixed64,1,opt,name=currentBid,proto3" json:"currentBid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RaiseBidResponse) Reset() {
+	*x = RaiseBidResponse{}
+	mi := &file_auction_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RaiseBidResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RaiseBidResponse) ProtoMessage() {}
+
+func (x *RaiseBidResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auction_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RaiseBidResponse.ProtoReflect.Descriptor instead.
+func (*RaiseBidResponse) Descriptor() ([]byte, []int) {
+	return file_auction_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *RaiseBidResponse) GetCurrentBid() float64 {
+	if x != nil {
+		return x.CurrentBid
+	}
+	return 0
+}
+
+type LowerBidRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Money         float64                `protobuf:"fixed64,1,opt,name=money,proto3" json:"money,omitempty"`
+	AuctionID     string                 `protobuf:"bytes,2,opt,name=auctionID,proto3" json:"auctionID,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LowerBidRequest) Reset() {
+	*x = LowerBidRequest{}
+	mi := &file_auction_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LowerBidRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LowerBidRequest) ProtoMessage() {}
+
+func (x *LowerBidRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auction_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LowerBidRequest.ProtoReflect.Descriptor instead.
+func (*LowerBidRequest) Descriptor() ([]byte, []int) {
+	return file_auction_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *LowerBidRequest) GetMoney() float64 {
+	if x != nil {
+		return x.Money
+	}
+	return 0
+}
+
+func (x *LowerBidRequest) GetAuctionID() string {
+	if x != nil {
+		return x.AuctionID
+	}
+	return ""
+}
+
+type LowerBidResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CurrentBid    float64                `protobuf:"fixed64,1,opt,name=currentBid,proto3" json:"currentBid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LowerBidResponse) Reset() {
+	*x = LowerBidResponse{}
+	mi := &file_auction_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LowerBidResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LowerBidResponse) ProtoMessage() {}
+
+func (x *LowerBidResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auction_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LowerBidResponse.ProtoReflect.Descriptor instead.
+func (*LowerBidResponse) Descriptor() ([]byte, []int) {
+	return file_auction_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *LowerBidResponse) GetCurrentBid() float64 {
+	if x != nil {
+		return x.CurrentBid
+	}
+	return 0
+}
+
 var File_auction_proto protoreflect.FileDescriptor
 
 const file_auction_proto_rawDesc = "" +
@@ -584,12 +776,28 @@ const file_auction_proto_rawDesc = "" +
 	"\x1aDeleteUserToAuctionRequest\x12\x1c\n" +
 	"\tidAuction\x18\x01 \x01(\tR\tidAuction\"5\n" +
 	"\x1bDeleteUserToAuctionResponse\x12\x16\n" +
-	"\x06Result\x18\x01 \x01(\bR\x06Result2\xea\x02\n" +
+	"\x06Result\x18\x01 \x01(\bR\x06Result\"E\n" +
+	"\x0fRaiseBidRequest\x12\x14\n" +
+	"\x05money\x18\x01 \x01(\x01R\x05money\x12\x1c\n" +
+	"\tauctionID\x18\x02 \x01(\tR\tauctionID\"2\n" +
+	"\x10RaiseBidResponse\x12\x1e\n" +
+	"\n" +
+	"currentBid\x18\x01 \x01(\x01R\n" +
+	"currentBid\"E\n" +
+	"\x0fLowerBidRequest\x12\x14\n" +
+	"\x05money\x18\x01 \x01(\x01R\x05money\x12\x1c\n" +
+	"\tauctionID\x18\x02 \x01(\tR\tauctionID\"2\n" +
+	"\x10lowerBidResponse\x12\x1e\n" +
+	"\n" +
+	"currentBid\x18\x01 \x01(\x01R\n" +
+	"currentBid2\xec\x03\n" +
 	"\rAuctionServic\x12N\n" +
 	"\rCreateAuction\x12\x1d.auction.CreateAuctionRequest\x1a\x1e.auction.CreateAuctionResponse\x12N\n" +
 	"\rGetAllAuction\x12\x1d.auction.GetAllAuctionRequest\x1a\x1e.auction.GetAllAuctionResponse\x12W\n" +
 	"\x10AddUserToAuction\x12 .auction.AddUserToAuctionRequest\x1a!.auction.AddUserToAuctionResponse\x12`\n" +
-	"\x13DeleteUserToAuction\x12#.auction.DeleteUserToAuctionRequest\x1a$.auction.DeleteUserToAuctionResponseBAZ?github.com/goggle-source/auctionLotProto/gen/go/auction;auctionb\x06proto3"
+	"\x13DeleteUserToAuction\x12#.auction.DeleteUserToAuctionRequest\x1a$.auction.DeleteUserToAuctionResponse\x12?\n" +
+	"\bRaiseBid\x12\x18.auction.RaiseBidRequest\x1a\x19.auction.RaiseBidResponse\x12?\n" +
+	"\bLowerBid\x12\x18.auction.LowerBidRequest\x1a\x19.auction.lowerBidResponseBAZ?github.com/goggle-source/auctionLotProto/gen/go/auction;auctionb\x06proto3"
 
 var (
 	file_auction_proto_rawDescOnce sync.Once
@@ -603,7 +811,7 @@ func file_auction_proto_rawDescGZIP() []byte {
 	return file_auction_proto_rawDescData
 }
 
-var file_auction_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_auction_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_auction_proto_goTypes = []any{
 	(*User)(nil),                        // 0: auction.User
 	(*Auction)(nil),                     // 1: auction.Auction
@@ -615,24 +823,32 @@ var file_auction_proto_goTypes = []any{
 	(*AddUserToAuctionResponse)(nil),    // 7: auction.AddUserToAuctionResponse
 	(*DeleteUserToAuctionRequest)(nil),  // 8: auction.DeleteUserToAuctionRequest
 	(*DeleteUserToAuctionResponse)(nil), // 9: auction.DeleteUserToAuctionResponse
-	nil,                                 // 10: auction.Auction.UsersEntry
-	(*durationpb.Duration)(nil),         // 11: google.protobuf.Duration
+	(*RaiseBidRequest)(nil),             // 10: auction.RaiseBidRequest
+	(*RaiseBidResponse)(nil),            // 11: auction.RaiseBidResponse
+	(*LowerBidRequest)(nil),             // 12: auction.LowerBidRequest
+	(*LowerBidResponse)(nil),            // 13: auction.lowerBidResponse
+	nil,                                 // 14: auction.Auction.UsersEntry
+	(*durationpb.Duration)(nil),         // 15: google.protobuf.Duration
 }
 var file_auction_proto_depIdxs = []int32{
-	10, // 0: auction.Auction.users:type_name -> auction.Auction.UsersEntry
-	11, // 1: auction.CreateAuctionRequest.time:type_name -> google.protobuf.Duration
+	14, // 0: auction.Auction.users:type_name -> auction.Auction.UsersEntry
+	15, // 1: auction.CreateAuctionRequest.time:type_name -> google.protobuf.Duration
 	1,  // 2: auction.GetAllAuctionResponse.allAuction:type_name -> auction.Auction
 	0,  // 3: auction.Auction.UsersEntry.value:type_name -> auction.User
 	2,  // 4: auction.AuctionServic.CreateAuction:input_type -> auction.CreateAuctionRequest
 	4,  // 5: auction.AuctionServic.GetAllAuction:input_type -> auction.GetAllAuctionRequest
 	6,  // 6: auction.AuctionServic.AddUserToAuction:input_type -> auction.AddUserToAuctionRequest
 	8,  // 7: auction.AuctionServic.DeleteUserToAuction:input_type -> auction.DeleteUserToAuctionRequest
-	3,  // 8: auction.AuctionServic.CreateAuction:output_type -> auction.CreateAuctionResponse
-	5,  // 9: auction.AuctionServic.GetAllAuction:output_type -> auction.GetAllAuctionResponse
-	7,  // 10: auction.AuctionServic.AddUserToAuction:output_type -> auction.AddUserToAuctionResponse
-	9,  // 11: auction.AuctionServic.DeleteUserToAuction:output_type -> auction.DeleteUserToAuctionResponse
-	8,  // [8:12] is the sub-list for method output_type
-	4,  // [4:8] is the sub-list for method input_type
+	10, // 8: auction.AuctionServic.RaiseBid:input_type -> auction.RaiseBidRequest
+	12, // 9: auction.AuctionServic.LowerBid:input_type -> auction.LowerBidRequest
+	3,  // 10: auction.AuctionServic.CreateAuction:output_type -> auction.CreateAuctionResponse
+	5,  // 11: auction.AuctionServic.GetAllAuction:output_type -> auction.GetAllAuctionResponse
+	7,  // 12: auction.AuctionServic.AddUserToAuction:output_type -> auction.AddUserToAuctionResponse
+	9,  // 13: auction.AuctionServic.DeleteUserToAuction:output_type -> auction.DeleteUserToAuctionResponse
+	11, // 14: auction.AuctionServic.RaiseBid:output_type -> auction.RaiseBidResponse
+	13, // 15: auction.AuctionServic.LowerBid:output_type -> auction.lowerBidResponse
+	10, // [10:16] is the sub-list for method output_type
+	4,  // [4:10] is the sub-list for method input_type
 	4,  // [4:4] is the sub-list for extension type_name
 	4,  // [4:4] is the sub-list for extension extendee
 	0,  // [0:4] is the sub-list for field type_name
@@ -649,7 +865,7 @@ func file_auction_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auction_proto_rawDesc), len(file_auction_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

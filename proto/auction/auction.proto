@@ -11,6 +11,8 @@ service AuctionServic {
     rpc GetAllAuction(GetAllAuctionRequest) returns (GetAllAuctionResponse);
     rpc AddUserToAuction(AddUserToAuctionRequest) returns (AddUserToAuctionResponse);
     rpc DeleteUserToAuction(DeleteUserToAuctionRequest) returns (DeleteUserToAuctionResponse);
+    rpc RaiseBid(RaiseBidRequest) returns (RaiseBidResponse);
+    rpc LowerBid(LowerBidRequest) returns (lowerBidResponse);
 }
 
 message User {
@@ -60,4 +62,22 @@ message DeleteUserToAuctionRequest {
 
 message DeleteUserToAuctionResponse {
     bool Result = 1;
+}
+
+message RaiseBidRequest {
+    double money = 1;
+    string auctionID = 2;
+}
+
+message RaiseBidResponse {
+    double currentBid = 1;
+}
+
+message LowerBidRequest {
+    double money = 1;
+    string auctionID = 2;
+}
+
+message lowerBidResponse {
+    double currentBid = 1;
 }
