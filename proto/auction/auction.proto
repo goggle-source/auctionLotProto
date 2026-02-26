@@ -33,7 +33,8 @@ message CreateAuctionRequest {
     string nameAuction = 1;
     uint64 originalPrice = 2;
     uint32 stepPrice = 3;
-    google.protobuf.Duration time = 4;
+    string productID = 4;
+    google.protobuf.Duration time = 5;
 }
 
 message CreateAuctionResponse {

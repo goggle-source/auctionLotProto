@@ -163,7 +163,8 @@ type CreateAuctionRequest struct {
 	NameAuction   string                 `protobuf:"bytes,1,opt,name=nameAuction,proto3" json:"nameAuction,omitempty"`
 	OriginalPrice uint64                 `protobuf:"varint,2,opt,name=originalPrice,proto3" json:"originalPrice,omitempty"`
 	StepPrice     uint32                 `protobuf:"varint,3,opt,name=stepPrice,proto3" json:"stepPrice,omitempty"`
-	Time          *durationpb.Duration   `protobuf:"bytes,4,opt,name=time,proto3" json:"time,omitempty"`
+	ProductID     string                 `protobuf:"bytes,4,opt,name=productID,proto3" json:"productID,omitempty"`
+	Time          *durationpb.Duration   `protobuf:"bytes,5,opt,name=time,proto3" json:"time,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -217,6 +218,13 @@ func (x *CreateAuctionRequest) GetStepPrice() uint32 {
 		return x.StepPrice
 	}
 	return 0
+}
+
+func (x *CreateAuctionRequest) GetProductID() string {
+	if x != nil {
+		return x.ProductID
+	}
+	return ""
 }
 
 func (x *CreateAuctionRequest) GetTime() *durationpb.Duration {
@@ -744,12 +752,13 @@ const file_auction_proto_rawDesc = "" +
 	"\n" +
 	"UsersEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12#\n" +
-	"\x05value\x18\x02 \x01(\v2\r.auction.UserR\x05value:\x028\x01\"\xab\x01\n" +
+	"\x05value\x18\x02 \x01(\v2\r.auction.UserR\x05value:\x028\x01\"\xc9\x01\n" +
 	"\x14CreateAuctionRequest\x12 \n" +
 	"\vnameAuction\x18\x01 \x01(\tR\vnameAuction\x12$\n" +
 	"\roriginalPrice\x18\x02 \x01(\x04R\roriginalPrice\x12\x1c\n" +
-	"\tstepPrice\x18\x03 \x01(\rR\tstepPrice\x12-\n" +
-	"\x04time\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\x04time\"7\n" +
+	"\tstepPrice\x18\x03 \x01(\rR\tstepPrice\x12\x1c\n" +
+	"\tproductID\x18\x04 \x01(\tR\tproductID\x12-\n" +
+	"\x04time\x18\x05 \x01(\v2\x19.google.protobuf.DurationR\x04time\"7\n" +
 	"\x15CreateAuctionResponse\x12\x1e\n" +
 	"\n" +
 	"uidAuction\x18\x01 \x01(\tR\n" +
