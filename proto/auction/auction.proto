@@ -50,6 +50,7 @@ message GetAllAuctionResponse {
 message AddUserToAuctionRequest {
     string idAuction = 1;
     uint64 Price = 2;
+    string name = 3;
 }
 
 message AddUserToAuctionResponse {

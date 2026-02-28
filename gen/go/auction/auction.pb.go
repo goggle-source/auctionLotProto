@@ -362,6 +362,7 @@ type AddUserToAuctionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	IdAuction     string                 `protobuf:"bytes,1,opt,name=idAuction,proto3" json:"idAuction,omitempty"`
 	Price         uint64                 `protobuf:"varint,2,opt,name=Price,proto3" json:"Price,omitempty"`
+	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -408,6 +409,13 @@ func (x *AddUserToAuctionRequest) GetPrice() uint64 {
 		return x.Price
 	}
 	return 0
+}
+
+func (x *AddUserToAuctionRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
 }
 
 type AddUserToAuctionResponse struct {
@@ -767,10 +775,11 @@ const file_auction_proto_rawDesc = "" +
 	"\x15GetAllAuctionResponse\x120\n" +
 	"\n" +
 	"allAuction\x18\x01 \x03(\v2\x10.auction.AuctionR\n" +
-	"allAuction\"M\n" +
+	"allAuction\"a\n" +
 	"\x17AddUserToAuctionRequest\x12\x1c\n" +
 	"\tidAuction\x18\x01 \x01(\tR\tidAuction\x12\x14\n" +
-	"\x05Price\x18\x02 \x01(\x04R\x05Price\"2\n" +
+	"\x05Price\x18\x02 \x01(\x04R\x05Price\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\"2\n" +
 	"\x18AddUserToAuctionResponse\x12\x16\n" +
 	"\x06Result\x18\x01 \x01(\bR\x06Result\":\n" +
 	"\x1aDeleteUserToAuctionRequest\x12\x1c\n" +
