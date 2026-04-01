@@ -81,7 +81,8 @@ type Auction struct {
 	OriginalPrice uint64                 `protobuf:"varint,3,opt,name=originalPrice,proto3" json:"originalPrice,omitempty"`
 	StepPrice     uint32                 `protobuf:"varint,4,opt,name=stepPrice,proto3" json:"stepPrice,omitempty"`
 	IdUserCreater string                 `protobuf:"bytes,5,opt,name=idUserCreater,proto3" json:"idUserCreater,omitempty"`
-	Users         map[string]*User       `protobuf:"bytes,6,rep,name=users,proto3" json:"users,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	TimeAuction   *durationpb.Duration   `protobuf:"bytes,6,opt,name=timeAuction,proto3" json:"timeAuction,omitempty"`
+	Users         map[string]*User       `protobuf:"bytes,7,rep,name=users,proto3" json:"users,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -151,6 +152,13 @@ func (x *Auction) GetIdUserCreater() string {
 	return ""
 }
 
+func (x *Auction) GetTimeAuction() *durationpb.Duration {
+	if x != nil {
+		return x.TimeAuction
+	}
+	return nil
+}
+
 func (x *Auction) GetUsers() map[string]*User {
 	if x != nil {
 		return x.Users
@@ -164,7 +172,8 @@ type CreateAuctionRequest struct {
 	OriginalPrice uint64                 `protobuf:"varint,2,opt,name=originalPrice,proto3" json:"originalPrice,omitempty"`
 	StepPrice     uint32                 `protobuf:"varint,3,opt,name=stepPrice,proto3" json:"stepPrice,omitempty"`
 	ProductID     string                 `protobuf:"bytes,4,opt,name=productID,proto3" json:"productID,omitempty"`
-	Time          *durationpb.Duration   `protobuf:"bytes,5,opt,name=time,proto3" json:"time,omitempty"`
+	TimeAuction   *durationpb.Duration   `protobuf:"bytes,5,opt,name=timeAuction,proto3" json:"timeAuction,omitempty"`
+	TimeClient    *durationpb.Duration   `protobuf:"bytes,6,opt,name=timeClient,proto3" json:"timeClient,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -227,9 +236,16 @@ func (x *CreateAuctionRequest) GetProductID() string {
 	return ""
 }
 
-func (x *CreateAuctionRequest) GetTime() *durationpb.Duration {
+func (x *CreateAuctionRequest) GetTimeAuction() *durationpb.Duration {
 	if x != nil {
-		return x.Time
+		return x.TimeAuction
+	}
+	return nil
+}
+
+func (x *CreateAuctionRequest) GetTimeClient() *durationpb.Duration {
+	if x != nil {
+		return x.TimeClient
 	}
 	return nil
 }
@@ -749,24 +765,28 @@ const file_auction_proto_rawDesc = "" +
 	"\rauction.proto\x12\aauction\x1a\x1egoogle/protobuf/duration.proto\"0\n" +
 	"\x04User\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
-	"\x05price\x18\x03 \x01(\x04R\x05price\"\x93\x02\n" +
+	"\x05price\x18\x03 \x01(\x04R\x05price\"\xd0\x02\n" +
 	"\aAuction\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12$\n" +
 	"\roriginalPrice\x18\x03 \x01(\x04R\roriginalPrice\x12\x1c\n" +
 	"\tstepPrice\x18\x04 \x01(\rR\tstepPrice\x12$\n" +
-	"\ridUserCreater\x18\x05 \x01(\tR\ridUserCreater\x121\n" +
-	"\x05users\x18\x06 \x03(\v2\x1b.auction.Auction.UsersEntryR\x05users\x1aG\n" +
+	"\ridUserCreater\x18\x05 \x01(\tR\ridUserCreater\x12;\n" +
+	"\vtimeAuction\x18\x06 \x01(\v2\x19.google.protobuf.DurationR\vtimeAuction\x121\n" +
+	"\x05users\x18\a \x03(\v2\x1b.auction.Auction.UsersEntryR\x05users\x1aG\n" +
 	"\n" +
 	"UsersEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12#\n" +
-	"\x05value\x18\x02 \x01(\v2\r.auction.UserR\x05value:\x028\x01\"\xc9\x01\n" +
+	"\x05value\x18\x02 \x01(\v2\r.auction.UserR\x05value:\x028\x01\"\x92\x02\n" +
 	"\x14CreateAuctionRequest\x12 \n" +
 	"\vnameAuction\x18\x01 \x01(\tR\vnameAuction\x12$\n" +
 	"\roriginalPrice\x18\x02 \x01(\x04R\roriginalPrice\x12\x1c\n" +
 	"\tstepPrice\x18\x03 \x01(\rR\tstepPrice\x12\x1c\n" +
-	"\tproductID\x18\x04 \x01(\tR\tproductID\x12-\n" +
-	"\x04time\x18\x05 \x01(\v2\x19.google.protobuf.DurationR\x04time\"7\n" +
+	"\tproductID\x18\x04 \x01(\tR\tproductID\x12;\n" +
+	"\vtimeAuction\x18\x05 \x01(\v2\x19.google.protobuf.DurationR\vtimeAuction\x129\n" +
+	"\n" +
+	"timeClient\x18\x06 \x01(\v2\x19.google.protobuf.DurationR\n" +
+	"timeClient\"7\n" +
 	"\x15CreateAuctionResponse\x12\x1e\n" +
 	"\n" +
 	"uidAuction\x18\x01 \x01(\tR\n" +
@@ -840,27 +860,29 @@ var file_auction_proto_goTypes = []any{
 	(*durationpb.Duration)(nil),         // 15: google.protobuf.Duration
 }
 var file_auction_proto_depIdxs = []int32{
-	14, // 0: auction.Auction.users:type_name -> auction.Auction.UsersEntry
-	15, // 1: auction.CreateAuctionRequest.time:type_name -> google.protobuf.Duration
-	1,  // 2: auction.GetAllAuctionResponse.allAuction:type_name -> auction.Auction
-	0,  // 3: auction.Auction.UsersEntry.value:type_name -> auction.User
-	2,  // 4: auction.AuctionServic.CreateAuction:input_type -> auction.CreateAuctionRequest
-	4,  // 5: auction.AuctionServic.GetAllAuction:input_type -> auction.GetAllAuctionRequest
-	6,  // 6: auction.AuctionServic.AddUserToAuction:input_type -> auction.AddUserToAuctionRequest
-	8,  // 7: auction.AuctionServic.DeleteUserToAuction:input_type -> auction.DeleteUserToAuctionRequest
-	10, // 8: auction.AuctionServic.RaiseBid:input_type -> auction.RaiseBidRequest
-	12, // 9: auction.AuctionServic.LowerBid:input_type -> auction.LowerBidRequest
-	3,  // 10: auction.AuctionServic.CreateAuction:output_type -> auction.CreateAuctionResponse
-	5,  // 11: auction.AuctionServic.GetAllAuction:output_type -> auction.GetAllAuctionResponse
-	7,  // 12: auction.AuctionServic.AddUserToAuction:output_type -> auction.AddUserToAuctionResponse
-	9,  // 13: auction.AuctionServic.DeleteUserToAuction:output_type -> auction.DeleteUserToAuctionResponse
-	11, // 14: auction.AuctionServic.RaiseBid:output_type -> auction.RaiseBidResponse
-	13, // 15: auction.AuctionServic.LowerBid:output_type -> auction.lowerBidResponse
-	10, // [10:16] is the sub-list for method output_type
-	4,  // [4:10] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+	15, // 0: auction.Auction.timeAuction:type_name -> google.protobuf.Duration
+	14, // 1: auction.Auction.users:type_name -> auction.Auction.UsersEntry
+	15, // 2: auction.CreateAuctionRequest.timeAuction:type_name -> google.protobuf.Duration
+	15, // 3: auction.CreateAuctionRequest.timeClient:type_name -> google.protobuf.Duration
+	1,  // 4: auction.GetAllAuctionResponse.allAuction:type_name -> auction.Auction
+	0,  // 5: auction.Auction.UsersEntry.value:type_name -> auction.User
+	2,  // 6: auction.AuctionServic.CreateAuction:input_type -> auction.CreateAuctionRequest
+	4,  // 7: auction.AuctionServic.GetAllAuction:input_type -> auction.GetAllAuctionRequest
+	6,  // 8: auction.AuctionServic.AddUserToAuction:input_type -> auction.AddUserToAuctionRequest
+	8,  // 9: auction.AuctionServic.DeleteUserToAuction:input_type -> auction.DeleteUserToAuctionRequest
+	10, // 10: auction.AuctionServic.RaiseBid:input_type -> auction.RaiseBidRequest
+	12, // 11: auction.AuctionServic.LowerBid:input_type -> auction.LowerBidRequest
+	3,  // 12: auction.AuctionServic.CreateAuction:output_type -> auction.CreateAuctionResponse
+	5,  // 13: auction.AuctionServic.GetAllAuction:output_type -> auction.GetAllAuctionResponse
+	7,  // 14: auction.AuctionServic.AddUserToAuction:output_type -> auction.AddUserToAuctionResponse
+	9,  // 15: auction.AuctionServic.DeleteUserToAuction:output_type -> auction.DeleteUserToAuctionResponse
+	11, // 16: auction.AuctionServic.RaiseBid:output_type -> auction.RaiseBidResponse
+	13, // 17: auction.AuctionServic.LowerBid:output_type -> auction.lowerBidResponse
+	12, // [12:18] is the sub-list for method output_type
+	6,  // [6:12] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_auction_proto_init() }

@@ -26,7 +26,8 @@ message Auction {
     uint64 originalPrice = 3;
     uint32 stepPrice = 4;
     string idUserCreater = 5;
-    map<string, User> users = 6;
+    google.protobuf.Duration timeAuction = 6;
+    map<string, User> users = 7;
 }
 
 message CreateAuctionRequest {
@@ -34,7 +35,8 @@ message CreateAuctionRequest {
     uint64 originalPrice = 2;
     uint32 stepPrice = 3;
     string productID = 4;
-    google.protobuf.Duration time = 5;
+    google.protobuf.Duration timeAuction = 5;
+    google.protobuf.Duration timeClient = 6;
 }
 
 message CreateAuctionResponse {
