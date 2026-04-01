@@ -3,6 +3,7 @@ syntax = "proto3";
 package auction;
 
 import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/goggle-source/auctionLotProto/gen/go/auction;auction";
 
@@ -36,7 +37,7 @@ message CreateAuctionRequest {
     uint32 stepPrice = 3;
     string productID = 4;
     google.protobuf.Duration timeAuction = 5;
-    google.protobuf.Duration timeClient = 6;
+    google.protobuf.Timestamp timeClient = 6;
 }
 
 message CreateAuctionResponse {
